@@ -13,17 +13,17 @@
 
   <div class="field">
     <%= form.label :invoice_id %>
-    <%= form.text_field :invoice_id, id: :line_item_invoice_id %>
+    <%= form.collection_select :invoice_id, Invoice.all, :id, :id %>
   </div>
 
   <div class="field">
     <%= form.label :product_id %>
-    <%= form.text_field :product_id, id: :line_item_product_id %>
+    <%= form.collection_select :product_id, Product.all, :id, :name, :include_blank => true %>
   </div>
 
   <div class="field">
     <%= form.label :service_id %>
-    <%= form.text_field :service_id, id: :line_item_service_id %>
+    <%= form.collection_select :service_id, Service.all, :id, :name, :include_blank => true %>
   </div>
 
   <div class="field">

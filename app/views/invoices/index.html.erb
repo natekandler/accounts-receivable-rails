@@ -15,7 +15,7 @@
   <tbody>
     <% @invoices.each do |invoice| %>
       <tr>
-        <td><%= invoice.client %></td>
+        <td><%= invoice.client.name %></td>
         <td><%= invoice.net_days %></td>
         <td><%= invoice.note %></td>
         <td><%= link_to 'Show', invoice %></td>

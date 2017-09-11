@@ -2,17 +2,17 @@
 
 <p>
   <strong>Invoice:</strong>
-  <%= @line_item.invoice %>
+  <%= @line_item.invoice.id %>
 </p>
 
 <p>
   <strong>Product:</strong>
-  <%= @line_item.product %>
+  <%= @line_item.product&.name %>
 </p>
 
 <p>
   <strong>Service:</strong>
-  <%= @line_item.service %>
+  <%= @line_item.service&.name %>
 </p>
 
 <p>

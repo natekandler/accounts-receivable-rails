@@ -18,9 +18,9 @@
   <tbody>
     <% @line_items.each do |line_item| %>
       <tr>
-        <td><%= line_item.invoice %></td>
-        <td><%= line_item.product %></td>
-        <td><%= line_item.service %></td>
+        <td><%= line_item.invoice.id %></td>
+        <td><%= line_item.product&.name %></td>
+        <td><%= line_item.service&.name %></td>
         <td><%= line_item.price_override_cents %></td>
         <td><%= line_item.quantity %></td>
         <td><%= line_item.description %></td>
