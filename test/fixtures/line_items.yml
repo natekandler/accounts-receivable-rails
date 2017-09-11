@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  invoice: one
+  product: one
+  service: one
+  price_override_cents: 1
+  quantity: 1
+  description: MyString
+
+two:
+  invoice: two
+  product: two
+  service: two
+  price_override_cents: 1
+  quantity: 1
+  description: MyString
