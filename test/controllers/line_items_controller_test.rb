@@ -17,7 +17,7 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create line_item" do
     assert_difference('LineItem.count') do
-      post line_items_url, params: { line_item: { description: @line_item.description, invoice_id: @line_item.invoice_id, price_override_cents: @line_item.price_override_cents, product_id: @line_item.product_id, quantity: @line_item.quantity, service_id: @line_item.service_id } }
+      post line_items_url, params: { line_item: { description: @line_item.description, invoice_id: @line_item.invoice_id, price_override_cents: @line_item.price_override_cents, product_id: nil, quantity: @line_item.quantity, service_id: @line_item.service_id } }
     end
 
     assert_redirected_to line_item_url(LineItem.last)
@@ -34,7 +34,7 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update line_item" do
-    patch line_item_url(@line_item), params: { line_item: { description: @line_item.description, invoice_id: @line_item.invoice_id, price_override_cents: @line_item.price_override_cents, product_id: @line_item.product_id, quantity: @line_item.quantity, service_id: @line_item.service_id } }
+    patch line_item_url(@line_item), params: { line_item: { description: @line_item.description, invoice_id: @line_item.invoice_id, price_override_cents: @line_item.price_override_cents, product_id: @line_item.product_id, quantity: @line_item.quantity, service_id: nil } }
     assert_redirected_to line_item_url(@line_item)
   end
 
