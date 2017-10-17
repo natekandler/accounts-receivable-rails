@@ -8,14 +8,18 @@ class InvoicesController < ApplicationController
 
   def show
     @client = @invoice.client
+
     @line_items = (
       @invoice.line_items.joins(:product).where('products.price_cents != 0') +
       @invoice.line_items.joins(:service).where('services.price_cents != 0')
     ).group_by { |line_item| line_item.service.present? ? :service : :product }
-    @total = @line_items.values.flatten.sum { |line_item|
-      line_item.price_override_cents ||
-        line_item&.product&.price_cents ||
-        line_item&.service&.price_cents
+
+    @total = @line_items.values.flatten.map { |line_item|
+      [line_item.price_override_cents ||
+       line_item&.product&.price_cents ||
+       line_item&.service&.price_cents, line_item.quantity]
+    }.sum { |(price_cents, quantity)|
+      price_cents * quantity
     }
   end
 
