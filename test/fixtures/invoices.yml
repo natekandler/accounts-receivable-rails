@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  client: one
-  net_days: 1
-  note: MyString
+build:
+  client: acme
+  net_days: 30
+  note: Invoice for writing software for Acme
 
-two:
-  client: two
-  net_days: 1
-  note: MyString
+refactor:
+  client: acme
+  net_days: 30
+  note: Invoice for refactoring software for Acme

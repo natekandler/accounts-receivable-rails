@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  price_cents: 1
+antivirus_software:
+  name: Anti-virus software
+  price_cents: 200_00
 
-two:
-  name: MyString
-  price_cents: 1
+serverless_servers:
+  name: Serverless servers
+  price_cents: 1000_00
