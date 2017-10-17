@@ -9,6 +9,19 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <nav>
+        <ul>
+          <li><%= link_to "Clients", clients_path %></li>
+          <li><%= link_to "Products", products_path %></li>
+          <li><%= link_to "Services", services_path %></li>
+          <li><%= link_to "Invoices", invoices_path %></li>
+          <li><%= link_to "Line Items", line_items_path %></li>
+        </ul>
+      </nav>
+      <div class="main">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

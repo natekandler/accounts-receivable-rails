@@ -1,0 +1,71 @@
+/* vars */
+$green: #0f0;
+
+/* reset stuff */
+body, ul, li {
+  padding: 0;
+  margin: 0;
+}
+
+/* General layout stuff */
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #fefefe;
+}
+
+nav {
+  width: 7rem;
+
+  ul {
+    margin: 3rem 1rem 0 .4rem;
+    list-style-type: none;
+  }
+
+  li {
+    margin-top: 1rem;
+    padding: .4rem;
+    background-color: black;
+    text-align: center;
+
+    &:hover {
+      background-color: gray;
+    }
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
+.main {
+
+  table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    font-size: .8rem;
+    // border: 1px dotted gray;
+
+    td,th {
+      padding: .1rem;
+    }
+
+    td {
+      border: 1px dotted gray;
+    }
+  }
+
+  a {
+    display: inline-block;
+    padding: .4rem;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+
+    &:hover {
+      background-color: gray;
+    }
+  }
+
+}
