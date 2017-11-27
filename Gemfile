@@ -11,6 +11,8 @@ gem 'turbolinks', '~> 5'
 group :development, :test do
   gem 'pry-rails'
 
+  gem 'rails-controller-testing'
+
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
 end
