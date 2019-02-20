@@ -12,17 +12,6 @@ class InvoicePresenter
     ).group_by { |line_item| line_item.service.present? ? :service : :product }
   end
 
-  def calculate_total line_items
-    total = line_items.values.flatten.map { |line_item|
-      [line_item.price_override_cents ||
-       line_item&.product&.price_cents ||
-       line_item&.service&.price_cents, line_item.quantity]
-    }.sum { |(price_cents, quantity)|
-      price_cents * quantity
-    }
-    to_money(total)
-  end
-
   def line_items_with_totals line_items, type
     line_items.map do |line_item|
       line_item.unit_price = to_money(calculate_unit_price(line_item, type))
@@ -40,11 +29,24 @@ class InvoicePresenter
     calculate_unit_price(line_item, type) * line_item.quantity
   end
 
-  private 
+  # TODO: I think with a bit of changes to subtotal so the subtotal method doesn't
+  # return a string this could updated to be cleaner, 
+  # but it wasn't my main concern with the refactor 
+  def calculate_total line_items
+    total = line_items.values.flatten.map { |line_item|
+      [line_item.price_override_cents ||
+       line_item&.product&.price_cents ||
+       line_item&.service&.price_cents, line_item.quantity]
+    }.sum { |(price_cents, quantity)|
+      price_cents * quantity
+    }
+    to_money(total)
+  end
 
+  private 
+  # TODO: I wasn't sure where this belonged anymore 
+  #since it was only being used in the show view
   def to_money(cents)
-    puts "cents #{cents}"
-    
     if convert
       conversion_rate = rate_service.get_rate
       puts "conversion rate #{conversion_rate}"
