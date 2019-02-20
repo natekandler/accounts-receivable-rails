@@ -42,5 +42,5 @@ $ bundle exec rails server
 And then you should be able to see pre-generated invoices in a browser:
 [http://localhost:3000/invoices](http://localhost:3000/invoices)
 
-
+FEQsHc96zny2suQI19kVr2CIyoibZqyF
 
