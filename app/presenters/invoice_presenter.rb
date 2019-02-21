@@ -29,9 +29,6 @@ class InvoicePresenter
     calculate_unit_price(line_item, type) * line_item.quantity
   end
 
-  # TODO: I think with a bit of changes to subtotal so the subtotal method doesn't
-  # return a string this could updated to be cleaner, 
-  # but it wasn't my main concern with the refactor 
   def calculate_total line_items
     total = line_items.values.flatten.map { |line_item|
       [line_item.price_override_cents ||
@@ -44,16 +41,22 @@ class InvoicePresenter
   end
 
   private 
-  # TODO: I wasn't sure where this belonged anymore 
-  #since it was only being used in the show view
+
   def to_money(cents)
     if convert
-      conversion_rate = rate_service.get_rate
-      puts "conversion rate #{conversion_rate}"
-      "¥#{(conversion_rate * cents).to_i.to_s.insert(-3, ".")}"
+      cents_to_yen(cents)
     else
-    "$#{cents.to_s.insert(-3, ".")}"
+      cents_to_dollars(cents)
     end
+  end
+
+  def cents_to_yen cents
+    conversion_rate = rate_service.get_rate
+    "¥#{(conversion_rate * cents).to_i.to_s.insert(-3, ".")}"
+  end
+
+  def cents_to_dollars cents
+    "$#{cents.to_s.insert(-3, ".")}"
   end
 
   def rate_service
