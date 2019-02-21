@@ -14,8 +14,8 @@ class InvoicePresenter
 
   def line_items_with_totals line_items, type
     line_items.map do |line_item|
-      line_item.unit_price = to_money(calculate_unit_price(line_item, type))
-      line_item.subtotal = to_money(calculate_subtotal(line_item, type))
+      line_item.unit_price = price_as_string(calculate_unit_price(line_item, type))
+      line_item.subtotal = price_as_string(calculate_subtotal(line_item, type))
       line_item
     end
   end
@@ -37,12 +37,12 @@ class InvoicePresenter
     }.sum { |(price_cents, quantity)|
       price_cents * quantity
     }
-    to_money(total)
+    price_as_string(total)
   end
 
   private 
 
-  def to_money(cents)
+  def price_as_string(cents)
     if convert
       cents_to_yen(cents)
     else
