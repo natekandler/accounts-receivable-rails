@@ -7,8 +7,8 @@ class InvoicePresenter
 
   def group_line_items invoice
     (
-      line_items_with_totals(invoice.product_line_items, "product") +
-      line_items_with_totals(invoice.service_line_items, "service")
+      line_items_with_totals(invoice.product_line_items, :product) +
+      line_items_with_totals(invoice.service_line_items, :service)
     ).group_by { |line_item| line_item.service.present? ? :service : :product }
   end
 
@@ -21,7 +21,7 @@ class InvoicePresenter
   end
 
   def calculate_unit_price line_item, type
-    price_cents = type == "product" ? line_item.product.price_cents : line_item.service.price_cents
+    price_cents = type == :product ? line_item.product.price_cents : line_item.service.price_cents
     line_item.price_override_cents || price_cents
   end
 
