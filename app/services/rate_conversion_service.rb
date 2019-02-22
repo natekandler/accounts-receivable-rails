@@ -13,6 +13,8 @@ class RateConversionService
     end
   end
 
+  private
+
   def cents_to_yen cents
     conversion_rate = rate_service.get_rate
     "¥#{(conversion_rate * cents).to_i.to_s.insert(-3, ".")}"
