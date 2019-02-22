@@ -5,7 +5,7 @@ class LineItem < ApplicationRecord
 
   validate :must_be_product_or_service
 
-  attr_accessor :unit_price, :subtotal, :unit_price_string, :subtotal_string
+  attr_accessor :unit_price_string, :subtotal_string
 
   def must_be_product_or_service
     if product.blank? && service.blank?
