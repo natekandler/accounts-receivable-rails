@@ -15,6 +15,18 @@ class LineItem < ApplicationRecord
     end
   end
 
+  def unit_price
+    if self&.product
+      price_override_cents || product.price_cents
+    else
+      price_override_cents || service.price_cents
+    end
+  end
+
+  def subtotal
+    unit_price * quantity
+  end
+
   def line_item_instance_variable
 
   end

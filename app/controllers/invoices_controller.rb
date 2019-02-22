@@ -8,11 +8,8 @@ class InvoicesController < ApplicationController
 
   def show
     @client = @invoice.client
-    # I wasn't sure if I should create one method in the presenter that 
-    # returned all of the method relevant for the show action
-    # It seemed like overkill since there were only two things
-    @line_items = invoice_presenter.group_line_items(@invoice) 
-    @total = invoice_presenter.calculate_total(@line_items)
+    @line_items = invoice_presenter.line_items 
+    @total = invoice_presenter.total
   end
 
   def new
@@ -62,6 +59,7 @@ class InvoicesController < ApplicationController
     end
 
     def invoice_presenter
-      @invoice_presenter || InvoicePresenter.new(params[:convert])
+      args = {convert: params[:convert], invoice: @invoice}
+      @invoice_presenter || InvoicePresenter.new(args)
     end
 end
