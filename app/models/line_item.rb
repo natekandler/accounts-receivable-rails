@@ -6,6 +6,7 @@ class LineItem < ApplicationRecord
   validate :must_be_product_or_service
 
   attr_accessor :unit_price_string, :subtotal_string
+  enum item_type: [ :product, :service ]
 
   def must_be_product_or_service
     if product.blank? && service.blank?
@@ -16,10 +17,13 @@ class LineItem < ApplicationRecord
   end
 
   def unit_price
-    if self&.product
+    case item_type
+    when "product"
       price_override_cents || product.price_cents
-    else
+    when "service"
       price_override_cents || service.price_cents
+    else
+      nil
     end
   end
 

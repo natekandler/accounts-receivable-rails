@@ -21,6 +21,7 @@ class LineItemsController < ApplicationController
 
   # POST /line_items
   def create
+    #TODO: add item_type on creation
     @line_item = LineItem.new(line_item_params)
 
     if @line_item.save
